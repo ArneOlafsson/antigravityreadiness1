@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Disruption Scanner
 
-## Getting Started
+En strategisk SaaS-plattform designad för svenska företagsledare, styrelsemedlemmar och strategikonsulter.
 
-First, run the development server:
+## Funktioner
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 1. AI-disruptionsanalys
+Ett strukturerat analysverktyg med 25 frågor för att mäta organisationens exponering mot AI-disruption inom 5 kategorier:
+- Affärsmodellens exponering
+- Automatiseringsrisk i processer
+- Data & Digitalisering
+- Konkurrenstryck
+- Organisatorisk anpassningsförmåga
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Strategisk Dashboard
+Visuell översikt för ledningsgrupper:
+- **AI Disruption Score (0-100)**: Ett precisionsmått på risk.
+- **Riskradar**: Fördelning av risker över olika kategorier.
+- **Benchmarking**: Jämförelse mot branschsnitt och toppskikt.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. AI Attack Simulation
+Simulera hur en "AI-native" utmanare skulle kunna disrupta er affärsmodell, med genererade insikter om kostnadsminskningar och marknadsförskjutningar.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. Strategisk Färdplan (Roadmap)
+En rekommendationsmotor som guidar organisationen genom tre faser:
+- **Fas 1: Awareness** (Utbildning och styrning)
+- **Fas 2: Experimentation** (Pilotprojekt och automatisering)
+- **Fas 3: Transformation** (Nya affärsmodeller)
 
-## Learn More
+## Teknikstack
+- **Frontend**: Next.js 15 (App Router), React, TypeScript
+- **Visualisering**: Recharts
+- **Design**: Scandinavian Minimalist (Focus on Navy/White/Glassmorphism)
+- **Backend**: Firebase Integration (Förberedd för Firestore/Auth)
 
-To learn more about Next.js, take a look at the following resources:
+## Kom igång lokalt
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Installera beroenden:
+   ```bash
+   npm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. Starta utvecklingsservern:
+   ```bash
+   npm run dev
+   ```
 
-## Deploy on Vercel
+3. Öppna i webbläsaren:
+   [http://localhost:3000](http://localhost:3000)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Designval
+Plattformen använder en modern, minimalistisk estetik inspirerad av globala strategihus som McKinsey och BCG. Fokus ligger på tydlig typografi, gott om vitt utrymme och professionella blåa toner som signalerar förtroende och strategisk insikt.
