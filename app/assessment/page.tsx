@@ -99,18 +99,32 @@ export default function Assessment() {
         if (!user) return;
         setFinished(true);
 
+        let totalAdjustedSum = 0;
+        let totalCount = 0;
+
         const categoryScores = categories.map(cat => {
             const qKeys = Array.from({ length: 5 }, (_, i) => `cat${cat.id}-q${i}`);
-            const sum = qKeys.reduce((acc, key) => acc + (answers[key] || 3), 0);
+            const catSum = qKeys.reduce((acc, key) => {
+                let answer = answers[key];
+                if (answer === undefined) {
+                    answer = 3;
+                }
+                if (cat.id === 5) {
+                    answer = 6 - answer;
+                }
+                return acc + answer;
+            }, 0);
+            
+            totalAdjustedSum += catSum;
+            totalCount += 5;
+
             return {
                 name: cat.name,
-                score: Math.round((sum / 25) * 100)
+                score: Math.round((catSum / 25) * 100)
             };
         });
 
-        const totalSum = Object.values(answers).reduce((a, b) => a + b, 0);
-        const totalCount = Object.keys(answers).length || 1;
-        const finalScore = Math.round((totalSum / (totalCount * 5)) * 100);
+        const finalScore = Math.round((totalAdjustedSum / (totalCount * 5)) * 100);
 
         const reportData = {
             score: finalScore,
