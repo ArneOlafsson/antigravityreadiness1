@@ -322,19 +322,17 @@ export default function RoadmapPage() {
                     <h2 className="serif-font text-4xl mb-12 accent-border-left pl-6 relative z-10">4. Risk & Benchmark Analysis</h2>
                     
                     <div className="grid md:grid-cols-2 gap-10 w-full">
-                        <div className="p-8 border bg-soft print-exact h-[400px] flex flex-col">
+                        <div className="p-8 border bg-soft print-exact h-[400px] flex flex-col items-center">
                             <h4 className="font-bold mb-6 uppercase-spaced text-[0.6rem] text-center opacity-60 text-navy">Dimensionell Värmekarta</h4>
-                            <div className="flex-1 w-full relative">
-                                <div className="absolute inset-0">
-                                    <ResponsiveContainer width="100%" height="100%">
-                                        <RadarChart cx="50%" cy="50%" outerRadius="65%" data={data.categories} margin={{ top: 20, right: 30, bottom: 20, left: 30 }}>
-                                            <PolarGrid stroke="#ddd" />
-                                            <PolarAngleAxis dataKey="name" tick={{ fontSize: 9, fill: '#002B49', fontWeight: 700 }} />
-                                            <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
-                                            <Radar name="Din Profil" dataKey="score" stroke="var(--primary-navy)" fill="var(--primary-navy)" fillOpacity={0.4} />
-                                        </RadarChart>
-                                    </ResponsiveContainer>
-                                </div>
+                            <div style={{ width: '100%', height: '280px' }}>
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <RadarChart cx="50%" cy="50%" outerRadius="65%" data={data.categories} margin={{ top: 20, right: 30, bottom: 20, left: 30 }}>
+                                        <PolarGrid stroke="#ddd" />
+                                        <PolarAngleAxis dataKey="name" tick={{ fontSize: 9, fill: '#002B49', fontWeight: 700 }} />
+                                        <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
+                                        <Radar name="Din Profil" dataKey="score" stroke="var(--primary-navy)" fill="var(--primary-navy)" fillOpacity={0.4} />
+                                    </RadarChart>
+                                </ResponsiveContainer>
                             </div>
                         </div>
 
