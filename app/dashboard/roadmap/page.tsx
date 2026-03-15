@@ -604,11 +604,11 @@ export default function RoadmapPage() {
                         </div>
                     </div>
 
-                    <div className="mt-16 pt-8 border-t border-navy/10 print-exact flex flex-col items-center text-center">
-                        <h2 className="serif-font text-3xl mb-4 text-navy">12. Professionell Kontakt</h2>
-                        <p className="text-sm opacity-80 mb-6 max-w-lg">Boka in er fria genomgång av rapporten och nästa steg för er AI-strategi.</p>
+                    <div className="mt-16 pt-8 border-t border-navy/10 print-exact flex flex-col items-start text-left w-full">
+                        <h2 className="serif-font text-3xl mb-4 accent-border-left pl-6 text-navy">12. Professionell Kontakt</h2>
+                        <p className="text-sm opacity-80 mb-6 max-w-lg pl-6">Boka in er fria genomgång av rapporten och nästa steg för er AI-strategi.</p>
                         
-                        <div className="flex flex-col sm:flex-row gap-8 text-sm font-bold opacity-90">
+                        <div className="flex flex-col sm:flex-row gap-8 text-sm font-bold opacity-90 pl-6">
                             <div className="flex items-center gap-3">
                                 <span className="text-teal text-xl" style={{ color: 'var(--accent-teal)' }}>✉</span>
                                 <a href="mailto:arne@olafsson.se" className="hover:underline">arne@olafsson.se</a>
