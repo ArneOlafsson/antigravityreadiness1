@@ -134,7 +134,7 @@ export default function Dashboard() {
     const currentScenario = industryScenarios[userProfile?.industry] || industryScenarios['default'];
 
     return (
-        <div className="bg-soft min-h-100">
+        <div className="bg-soft main-wrapper">
             <Navbar />
 
             {/* PRINT ONLY: COVER PAGE */}
@@ -558,7 +558,8 @@ export default function Dashboard() {
             </div>
 
             <style jsx>{`
-        .bg-soft { background: #fafafa; min-height: 100vh; }
+        .bg-soft { background: #fafafa; }
+        .main-wrapper { min-height: 100vh; }
         .bg-navy { background: var(--primary-navy); }
         .grid { display: grid; }
         .main-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; }
@@ -606,8 +607,9 @@ export default function Dashboard() {
             box-sizing: border-box;
             background: white !important;
           }
-          .bg-soft { background: white !important; min-height: auto !important; }
+          .bg-soft { background: white !important; }
           .min-h-100 { min-height: auto !important; }
+          .main-wrapper { min-height: auto !important; }
           
           .print-page {
             page-break-after: always !important;
