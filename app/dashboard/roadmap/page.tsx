@@ -615,7 +615,7 @@ export default function RoadmapPage() {
                             </div>
                             <div className="flex items-center gap-3">
                                 <span className="text-teal text-xl" style={{ color: 'var(--accent-teal)' }}>☏</span>
-                                <a href="tel:07081825532" className="hover:underline">070-818 255 32</a>
+                                <a href="tel:0701825532" className="hover:underline">070-182 55 32</a>
                             </div>
                         </div>
                     </div>
