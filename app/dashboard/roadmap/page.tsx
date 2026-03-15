@@ -577,15 +577,15 @@ export default function RoadmapPage() {
                             <p className="text-xs leading-relaxed mb-6 opacity-80">Riktlinje för allokering av transformationsbudget.</p>
                             <div className="space-y-4">
                                 <div className="p-4 bg-white border flex gap-4 items-center print-exact">
-                                    <div className="text-2xl font-bold text-navy w-12 text-center">1%</div>
+                                    <div className="text-2xl font-bold text-navy w-12 text-center">10%</div>
                                     <div><h5 className="font-bold text-xs mb-1">Exploration</h5><p className="text-[0.6rem] opacity-70">Licenser, utbildning.</p></div>
                                 </div>
                                 <div className="p-4 bg-white border flex gap-4 items-center shadow-md border-l-4 print-exact" style={{ borderLeftColor: '#F57C00' }}>
-                                    <div className="text-2xl font-bold text-orange-500 w-12 text-center" style={{ color: '#F57C00' }}>3%</div>
+                                    <div className="text-2xl font-bold text-orange-500 w-12 text-center" style={{ color: '#F57C00' }}>30%</div>
                                     <div><h5 className="font-bold text-xs mb-1">Acceleration</h5><p className="text-[0.6rem] opacity-70">Automatisering av drift.</p></div>
                                 </div>
                                 <div className="p-4 bg-white border flex gap-4 items-center print-exact">
-                                    <div className="text-2xl font-bold text-teal w-12 text-center" style={{ color: 'var(--accent-teal)' }}>6%</div>
+                                    <div className="text-2xl font-bold text-teal w-12 text-center" style={{ color: 'var(--accent-teal)' }}>60%</div>
                                     <div><h5 className="font-bold text-xs mb-1">AI-Native</h5><p className="text-[0.6rem] opacity-70">Skapa nya digitala tjänster.</p></div>
                                 </div>
                             </div>
@@ -600,6 +600,22 @@ export default function RoadmapPage() {
                                 <p className="text-[0.65rem] leading-relaxed opacity-80 mb-8">Transformation är aldrig lineärt och aldrig bekvämt. Men fönstret står öppet nu. Agera.</p>
                                 <div className="w-full h-[1px] bg-white/20 mb-6 print-exact"></div>
                                 <div className="text-[0.5rem] uppercase-spaced tracking-widest opacity-60">AI DISRUPTION SCANNER &bull; ADVISORY</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="mt-16 pt-8 border-t border-navy/10 print-exact flex flex-col items-center text-center">
+                        <h2 className="serif-font text-3xl mb-4 text-navy">12. Professionell Kontakt</h2>
+                        <p className="text-sm opacity-80 mb-6 max-w-lg">Boka in er fria genomgång av rapporten och nästa steg för er AI-strategi.</p>
+                        
+                        <div className="flex flex-col sm:flex-row gap-8 text-sm font-bold opacity-90">
+                            <div className="flex items-center gap-3">
+                                <span className="text-teal text-xl" style={{ color: 'var(--accent-teal)' }}>✉</span>
+                                <a href="mailto:arne@olafsson.se" className="hover:underline">arne@olafsson.se</a>
+                            </div>
+                            <div className="flex items-center gap-3">
+                                <span className="text-teal text-xl" style={{ color: 'var(--accent-teal)' }}>☏</span>
+                                <a href="tel:07081825532" className="hover:underline">070-818 255 32</a>
                             </div>
                         </div>
                     </div>
