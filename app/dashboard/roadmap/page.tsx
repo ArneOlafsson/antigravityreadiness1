@@ -11,7 +11,7 @@ import { auth, db } from '@/lib/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import {
-    Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer,
+    Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer,
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
     LineChart, Line
 } from 'recharts';
@@ -327,9 +327,10 @@ export default function RoadmapPage() {
                             <div className="flex-1 w-full relative">
                                 <div className="absolute inset-0">
                                     <ResponsiveContainer width="100%" height="100%">
-                                        <RadarChart cx="50%" cy="50%" outerRadius="65%" data={data.categories}>
+                                        <RadarChart cx="50%" cy="50%" outerRadius="65%" data={data.categories} margin={{ top: 20, right: 30, bottom: 20, left: 30 }}>
                                             <PolarGrid stroke="#ddd" />
-                                            <PolarAngleAxis dataKey="name" tick={{ fontSize: 9, fill: '#002B49', fontWeight: 600 }} />
+                                            <PolarAngleAxis dataKey="name" tick={{ fontSize: 9, fill: '#002B49', fontWeight: 700 }} />
+                                            <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
                                             <Radar name="Din Profil" dataKey="score" stroke="var(--primary-navy)" fill="var(--primary-navy)" fillOpacity={0.4} />
                                         </RadarChart>
                                     </ResponsiveContainer>
