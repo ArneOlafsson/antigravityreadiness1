@@ -217,7 +217,6 @@ export default function Dashboard() {
                         <div className="h-0.5 w-12 bg-navy ml-auto mt-2"></div>
                     </div>
                     <div className="flex flex-col sm:flex-row gap-4 mt-8 md:mt-0 no-print w-full md:w-auto">
-                        <button className="btn-outline text-center" style={{ padding: '0.8rem 1.5rem', fontSize: '0.7rem' }} onClick={handlePrint}>Exportera Fullständig Rapport (PDF)</button>
                         <button className="btn-primary text-center" style={{ padding: '0.8rem 1.5rem', fontSize: '0.7rem' }} onClick={() => window.location.href = '/assessment'}>Uppdatera Data</button>
                     </div>
                 </header>
