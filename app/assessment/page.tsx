@@ -162,14 +162,14 @@ export default function Assessment() {
     return (
         <div className="bg-soft min-h-100 flex flex-col">
             <Navbar />
-            <div className="container py-20">
-                <div className="card shadow-none border-0 accent-border-left">
-                    <div className="flex justify-between items-end mb-12">
+            <div className="container py-12 md:py-20">
+                <div className="card shadow-none border-0 accent-border-left p-6 md:p-12 bg-white">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-12 gap-6">
                         <div>
-                            <div className="uppercase-spaced mb-2" style={{ color: 'var(--accent-teal)' }}>Analyssteg {step + 1} av 5</div>
-                            <h1 className="serif-font text-4xl uppercase">{currentCategory.name}</h1>
+                            <div className="uppercase-spaced mb-2" style={{ color: 'var(--accent-teal)' }}>Analyssteg {step + 1} av {categories.length}</div>
+                            <h1 className="serif-font text-3xl md:text-4xl uppercase">{currentCategory.name}</h1>
                         </div>
-                        <div className="text-right">
+                        <div className="text-left sm:text-right">
                             <div className="serif-font text-2xl">{Math.round(progress)}%</div>
                             <div className="uppercase-spaced" style={{ fontSize: '0.6rem' }}>Slutfört</div>
                         </div>
@@ -177,11 +177,11 @@ export default function Assessment() {
 
                     <div className="questions-list">
                         {currentCategory.questions.map((q, idx) => (
-                            <div key={idx} className="question-item py-10 border-bottom">
-                                <div className="flex flex-col md:flex-row justify-between gap-8">
+                            <div key={idx} className="question-item py-8 md:py-10 border-bottom">
+                                <div className="flex flex-col lg:flex-row justify-between gap-8">
                                     <p className="question-text serif-font text-xl flex-1">{q}</p>
                                     <div className="rating-area flex-1">
-                                        <div className="flex justify-between mb-4">
+                                        <div className="flex justify-between mb-4 gap-2">
                                             {[1, 2, 3, 4, 5].map((num) => (
                                                 <button
                                                     key={num}
@@ -202,9 +202,9 @@ export default function Assessment() {
                         ))}
                     </div>
 
-                    <div className="flex justify-between mt-16 pt-12 border-top">
-                        <button className="btn-outline" onClick={prevStep} disabled={step === 0}>Föregående</button>
-                        <button className="btn-primary" onClick={nextStep} disabled={currentCategory.questions.some((_, i) => !answers[`cat${currentCategory.id}-q${i}`])}>
+                    <div className="flex flex-col sm:flex-row justify-between mt-16 pt-12 border-top gap-6">
+                        <button className="btn-outline w-full sm:w-auto text-center" onClick={prevStep} disabled={step === 0}>Föregående</button>
+                        <button className="btn-primary w-full sm:w-auto text-center" onClick={nextStep} disabled={currentCategory.questions.some((_, i) => !answers[`cat${currentCategory.id}-q${i}`])}>
                             {step === categories.length - 1 ? 'Slutför Analys' : 'Nästa Kategori'}
                         </button>
                     </div>
@@ -214,15 +214,25 @@ export default function Assessment() {
             <style jsx>{`
         .bg-soft { background: #fafafa; min-height: 100vh; }
         .rating-btn { 
-          width: 50px; 
-          height: 50px; 
+          flex: 1;
+          max-width: 60px;
+          aspect-ratio: 1/1;
           border: 1px solid #ddd; 
           background: white; 
-          font-family: 'Montserrat', sans-serif;
+          font-family: var(--header-font);
           font-weight: 700;
           cursor: pointer;
           transition: all 0.2s;
           border-radius: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.1rem;
+        }
+        @media (max-width: 640px) {
+          .rating-btn {
+            font-size: 0.9rem;
+          }
         }
         .rating-btn.active { background: var(--primary-navy); border-color: var(--primary-navy); color: white; }
         .rating-btn:hover:not(.active) { border-color: var(--primary-navy); }

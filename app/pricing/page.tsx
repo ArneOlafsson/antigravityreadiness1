@@ -1,6 +1,7 @@
 'use client';
 
 import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
 import Link from 'next/link';
 
 export default function PricingPage() {
@@ -22,7 +23,7 @@ export default function PricingPage() {
         },
         {
             name: 'Professional',
-            price: '19 900 kr',
+            price: '5 990 SEK',
             period: '/ per analys',
             description: 'För ledningsgrupper som behöver en konkret, exekutiv handlingsplan för att agera.',
             features: [
@@ -31,10 +32,11 @@ export default function PricingPage() {
                 'AI Attack Simulation (6 unika scenarier)',
                 'Exportbar PDF-rapport för Styrelsen',
                 'Detaljerad gap-analys per avdelning',
-                'Taktisk "Action-Plan" för Q1-H2'
+                'Taktisk "Action-Plan" för Q1-H2',
+                '2 timmars personlig genomgång'
             ],
             button: 'Aktivera Pro-analys',
-            cta: '/signup',
+            cta: 'https://buy.stripe.com/aFacMYgnofMI62P0Ix93y00',
             highlight: true,
             label: 'Mest Vald'
         },
@@ -50,7 +52,7 @@ export default function PricingPage() {
                 'Prioriterad support och rådgivning'
             ],
             button: 'Kontakta oss',
-            cta: 'mailto:info@aidisruptionscanner.se',
+            cta: 'mailto:arne@olafsson.se?subject=%C3%84mnesrad%20AI%20Disruption%20Enterprise',
             highlight: false
         }
     ];
@@ -129,7 +131,7 @@ export default function PricingPage() {
                                     <div className="serif-font text-4xl opacity-20">01</div>
                                     <div>
                                         <h4 className="font-bold mb-1">Eliminera gissningar</h4>
-                                        <p className="text-sm text-muted leading-relaxed">Istället för att ledningen känner sig "orolig", får ni konkreta data på exakt var era processer är sörbara.</p>
+                                        <p className="text-sm text-muted leading-relaxed">Istället för att ledningen känner sig "orolig", får ni konkreta data på exakt var era processer är sårbara.</p>
                                     </div>
                                 </div>
                                 <div className="flex gap-8 border-t pt-8">
@@ -152,7 +154,7 @@ export default function PricingPage() {
                             <p className="serif-font text-2xl italic leading-relaxed mb-6">
                                 "Kostnaden för analysen är försumbar jämfört med risken att gå miste om en hel marknadsförändring för att man agerade för sent."
                             </p>
-                            <p className="uppercase-spaced text-xs opacity-60">Gustaf Olafsson — Strategy Lead</p>
+                            <p className="uppercase-spaced text-xs opacity-60">Arne Olafsson, Strategy Lead</p>
                         </div>
                     </div>
                 </div>
@@ -161,6 +163,7 @@ export default function PricingPage() {
             <style jsx>{`
                 .btn-primary:hover { background: white !important; color: var(--primary-navy) !important; }
             `}</style>
+            <Footer />
         </div>
     );
 }

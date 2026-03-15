@@ -1,0 +1,19 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/admin/page": "/admin",
+  "/api/webhook/stripe/route": "/api/webhook/stripe",
+  "/assessment/page": "/assessment",
+  "/dashboard/page": "/dashboard",
+  "/dashboard/profile/page": "/dashboard/profile",
+  "/dashboard/roadmap/page": "/dashboard/roadmap",
+  "/dashboard/simulation/page": "/dashboard/simulation",
+  "/favicon.ico/route": "/favicon.ico",
+  "/login/page": "/login",
+  "/methodology/page": "/methodology",
+  "/page": "/",
+  "/pricing/page": "/pricing",
+  "/privacy/page": "/privacy",
+  "/signup/page": "/signup",
+  "/terms/page": "/terms"
+}
