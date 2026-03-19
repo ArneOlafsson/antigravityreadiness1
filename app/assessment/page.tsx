@@ -63,7 +63,7 @@ const categories = [
 
 import { auth, db } from '@/lib/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
-import { doc, setDoc, updateDoc } from 'firebase/firestore';
+import { doc, setDoc, updateDoc, collection, addDoc } from 'firebase/firestore';
 
 export default function Assessment() {
     const [step, setStep] = useState(0);
@@ -127,13 +127,20 @@ export default function Assessment() {
         const finalScore = Math.round((totalAdjustedSum / (totalCount * 5)) * 100);
 
         const reportData = {
+            userId: user.uid,
             score: finalScore,
             categories: categoryScores,
+            rawAnswers: answers,
             lastUpdated: new Date().toISOString()
         };
 
         try {
+            // Skapa en historik/log-post för detta specifika test, så att kunden(och vi) kan spåra utveckling
+            await addDoc(collection(db, 'assessment_logs'), reportData);
+
+            // Spara över "senaste resultatet" på vanliga assesments doc för instrumentpanelen
             await setDoc(doc(db, 'assessments', user.uid), reportData);
+            
             await updateDoc(doc(db, 'users', user.uid), {
                 latestScore: finalScore,
                 hasCompletedAssessment: true

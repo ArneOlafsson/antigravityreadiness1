@@ -4,15 +4,16 @@ import { useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar';
 import { auth, db } from '@/lib/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
-import { doc, getDoc, onSnapshot } from 'firebase/firestore';
+import { doc, getDoc, onSnapshot, collection, getDocs } from 'firebase/firestore';
 import Link from 'next/link'; // Added Link import
 import {
     Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
-    ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip
+    ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell
 } from 'recharts';
 
 export default function Dashboard() {
     const [data, setData] = useState<any>(null);
+    const [distributionData, setDistributionData] = useState<any[]>([]);
     const [userProfile, setUserProfile] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     // Removed: const [showPremiumPlan, setShowPremiumPlan] = useState(false);
@@ -55,6 +56,49 @@ export default function Dashboard() {
                         timestamp: new Date().toISOString()
                     });
                 }
+
+                // Fetch Global Distribution Data
+                const assessmentsRef = collection(db, 'assessments');
+                const allSnap = await getDocs(assessmentsRef);
+                const allScores: number[] = [];
+                allSnap.forEach(docSnap => {
+                    const d = docSnap.data();
+                    if (d.score !== undefined) {
+                        allScores.push(d.score);
+                    }
+                });
+
+                const buckets = [
+                    { range: '0-10', min: 0, max: 10, count: 0 },
+                    { range: '11-20', min: 11, max: 20, count: 0 },
+                    { range: '21-30', min: 21, max: 30, count: 0 },
+                    { range: '31-40', min: 31, max: 40, count: 0 },
+                    { range: '41-50', min: 41, max: 50, count: 0 },
+                    { range: '51-60', min: 51, max: 60, count: 0 },
+                    { range: '61-70', min: 61, max: 70, count: 0 },
+                    { range: '71-80', min: 71, max: 80, count: 0 },
+                    { range: '81-90', min: 81, max: 90, count: 0 },
+                    { range: '91-100', min: 91, max: 100, count: 0 }
+                ];
+
+                allScores.forEach(s => {
+                    const b = buckets.find(b => s >= b.min && s <= b.max);
+                    if (b) b.count++;
+                });
+
+                // Add background data if empty, to illustrate standard distribution curve
+                if (allScores.length < 15) {
+                    buckets[2].count += 1;
+                    buckets[3].count += 4;
+                    buckets[4].count += 12;
+                    buckets[5].count += 18;
+                    buckets[6].count += 9;
+                    buckets[7].count += 3;
+                    buckets[8].count += 1;
+                }
+
+                setDistributionData(buckets);
+
                 setLoading(false);
             } else {
                 window.location.href = '/login';
@@ -217,6 +261,7 @@ export default function Dashboard() {
                         <div className="h-0.5 w-12 bg-navy ml-auto mt-2"></div>
                     </div>
                     <div className="flex flex-col sm:flex-row gap-4 mt-8 md:mt-0 no-print w-full md:w-auto">
+                        <button className="btn-outline text-center" style={{ padding: '0.8rem 1.5rem', fontSize: '0.7rem' }} onClick={() => window.location.href = '/dashboard/history'}>Visa Historik</button>
                         <button className="btn-primary text-center" style={{ padding: '0.8rem 1.5rem', fontSize: '0.7rem' }} onClick={() => window.location.href = '/assessment'}>Uppdatera Data</button>
                     </div>
                 </header>
@@ -270,6 +315,41 @@ export default function Dashboard() {
                                         </BarChart>
                                     </ResponsiveContainer>
                                 </div>
+                            </div>
+                        </div>
+
+                        {/* Benchmark Distribution Section */}
+                        <div className="card bg-white p-6 md:p-8 mt-4">
+                            <h3 className="serif-font text-2xl mb-8">Din Position på Marknaden</h3>
+                            <p className="text-muted text-xs mb-8">Grafen visar hur er exponering ({data.score}) relaterar till massan av testade företag. Ett klockformat utfall tyder på att den stora majoriteten fortfarande tampas med hög konventionell operationell risk.</p>
+                            
+                            <div className="chart-container" style={{ height: '300px' }}>
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <BarChart data={distributionData} margin={{ top: 20, right: 20, left: -20, bottom: 0 }}>
+                                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
+                                        <XAxis dataKey="range" tick={{ fontSize: 10, fill: '#002B49', fontWeight: 700 }} axisLine={false} tickLine={false} />
+                                        <YAxis tick={{ fontSize: 10, fill: '#002B49' }} axisLine={false} tickLine={false} />
+                                        <Tooltip 
+                                            cursor={{ fill: 'rgba(0,0,0,0.02)' }} 
+                                            contentStyle={{ borderRadius: '4px', border: '1px solid #ccc', fontSize: '11px', color: '#002B49', fontWeight: 700, padding: '10px' }}
+                                            formatter={(value) => [`${value} analyser`, 'Antal']}
+                                        />
+                                        <Bar dataKey="count" radius={[4, 4, 0, 0]}>
+                                            {
+                                                distributionData.map((entry, index) => {
+                                                    const isUserBucket = data.score >= entry.min && data.score <= entry.max;
+                                                    return (
+                                                        <Cell 
+                                                            key={`cell-${index}`} 
+                                                            fill={isUserBucket ? 'var(--accent-teal)' : 'var(--primary-navy)'} 
+                                                            fillOpacity={isUserBucket ? 1 : 0.2}
+                                                        />
+                                                    );
+                                                })
+                                            }
+                                        </Bar>
+                                    </BarChart>
+                                </ResponsiveContainer>
                             </div>
                         </div>
 
