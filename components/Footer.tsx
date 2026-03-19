@@ -15,7 +15,7 @@ export default function Footer() {
           </nav>
         </div>
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-center opacity-50">
-          <div className="uppercase-spaced text-[0.6rem] tracking-[0.1em] md:tracking-[0.2em]">© 2025 Olafsson Strategic Group — All Rights Reserved</div>
+          <div className="uppercase-spaced text-[0.6rem] tracking-[0.1em] md:tracking-[0.2em]">© 2025 <a href="https://www.olafsson.se" target="_blank" rel="noopener noreferrer" className="hover:text-teal transition-colors">Olafsson Strategic Group</a> — All Rights Reserved</div>
           <div className="uppercase-spaced text-[0.6rem] tracking-[0.1em] md:tracking-[0.2em]">Crafted for Executives</div>
         </div>
       </div>

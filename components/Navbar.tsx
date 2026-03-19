@@ -25,9 +25,14 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="container flex justify-between items-center py-6">
-        <Link href="/" className="logo serif-font text-xl md:text-2xl uppercase-spaced flex-shrink-0" style={{ color: 'var(--primary-navy)' }}>
-          AI DISRUPTION <span style={{ fontWeight: 400 }} className="hidden sm:inline">SCANNER</span>
-        </Link>
+        <div className="flex flex-col">
+          <Link href="/" className="logo serif-font text-xl md:text-2xl uppercase-spaced flex-shrink-0" style={{ color: 'var(--primary-navy)' }}>
+            AI DISRUPTION <span style={{ fontWeight: 400 }} className="hidden sm:inline">SCANNER</span>
+          </Link>
+          <a href="https://www.olafsson.se" target="_blank" rel="noopener noreferrer" className="uppercase-spaced hover:text-teal transition-colors mt-1" style={{ color: 'var(--text-muted)', fontSize: '0.65rem', letterSpacing: '0.1em', textDecoration: 'none' }}>
+            Ett initiativ av Olafsson Strategic Group
+          </a>
+        </div>
         
         {/* Desktop Links */}
         <div className="links hidden md:flex items-center gap-8">
