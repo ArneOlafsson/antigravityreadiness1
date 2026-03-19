@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   description: "Analysera hur exponerad din verksamhet är för AI-störningar. Få poäng, risker och en strategisk färdplan för AI-transformation.",
 };
 
+import { Analytics } from '@vercel/analytics/react';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -15,6 +17,7 @@ export default function RootLayout({
     <html lang="sv">
       <body>
         <main>{children}</main>
+        <Analytics />
       </body>
     </html>
   );
