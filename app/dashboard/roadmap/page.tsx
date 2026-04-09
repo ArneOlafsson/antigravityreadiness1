@@ -664,6 +664,8 @@ export default function RoadmapPage() {
                         box-shadow: none !important;
                     }
                     .report-page {
+                        display: flex !important;
+                        flex-direction: column !important;
                         width: 100% !important;
                         height: auto !important;
                         min-height: 290mm !important;
@@ -674,7 +676,7 @@ export default function RoadmapPage() {
                         break-after: page !important;
                         break-inside: avoid !important;
                         margin: 0 !important;
-                        padding: 2.5rem !important; /* TVINGAD PDF-PADDING FÖR ATT SLÄPPA VÄNSTERKANTEN */
+                        padding: 50px 60px !important; /* 60px left/right avoids edge touching */
                         box-shadow: none !important;
                         border: none !important;
                     }
