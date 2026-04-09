@@ -674,6 +674,7 @@ export default function RoadmapPage() {
                         break-after: page !important;
                         break-inside: avoid !important;
                         margin: 0 !important;
+                        padding: 2.5rem !important; /* TVINGAD PDF-PADDING FÖR ATT SLÄPPA VÄNSTERKANTEN */
                         box-shadow: none !important;
                         border: none !important;
                     }
