@@ -262,7 +262,7 @@ export default function RoadmapPage() {
                     <h2 className="serif-font text-4xl mb-10 accent-border-left pl-6 relative z-10">3. Strategic Decision Brief</h2>
                     
                     <div className="grid md:grid-cols-2 gap-10">
-                        <div>
+                        <div className="pl-4 md:pl-8">
                             <h3 className="serif-font text-2xl mb-6">1. Strategisk Risköversikt</h3>
                             <p className="text-xs leading-relaxed mb-6 opacity-80">Vad som sker om organisationen intar en passiv hållning till AI-transformationen under det kommande året:</p>
                             
@@ -457,7 +457,7 @@ export default function RoadmapPage() {
                 <div className="report-page content-page p-16 bg-soft text-navy print-exact">
                     <div className="mb-16">
                         <h2 className="serif-font text-4xl mb-8 accent-border-left pl-6">7. AI Maturity Framework</h2>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full pl-8 pr-4">
                             {[
                                 { level: 'L1: Experiment', desc: 'Individuellt bruk. Ingen central strategi.', ac: data.score > 60 },
                                 { level: 'L2: AI-Aware', desc: 'Piloter i silos. Generativ AI för text.', ac: data.score > 40 && data.score <= 60 },
@@ -479,9 +479,10 @@ export default function RoadmapPage() {
 
                     <div style={{ marginTop: '20px', paddingTop: '20px' }} className="print-exact relative">
                         <h2 className="serif-font text-4xl mb-6 accent-border-left pl-6">8. Industrispecifika Möjligheter</h2>
-                        <p className="mb-8 text-xs opacity-70">De 5 mest hög-påverkande AI-applikationerna just nu för: <strong>{data.industryData.name}</strong>.</p>
-                        
-                        <div className="space-y-4">
+                        <div className="pl-4 md:pl-8 pr-4">
+                            <p className="mb-8 text-xs opacity-70">De 5 mest hög-påverkande AI-applikationerna just nu för: <strong>{data.industryData.name}</strong>.</p>
+                            
+                            <div className="space-y-4">
                             {data.industryData.useCases.map((uc:any, i:number) => (
                                 <div key={i} className="bg-white border p-4 flex gap-6 items-center shadow-sm print-exact">
                                     <div className="w-10 h-10 bg-navy text-white flex items-center justify-center serif-font text-lg rounded print-exact">{i+1}</div>
@@ -503,6 +504,7 @@ export default function RoadmapPage() {
                                     </div>
                                 </div>
                             ))}
+                            </div>
                         </div>
                     </div>
                 </div>
