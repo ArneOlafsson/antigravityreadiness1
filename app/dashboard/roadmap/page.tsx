@@ -474,7 +474,10 @@ export default function RoadmapPage() {
                         </div>
                     </div>
 
-                    <div>
+                    {/* HARD SPACER FÖR ATT TVINGA NER AVSNITT 8 - 150px */}
+                    <div style={{ display: 'block', width: '100%', height: '150px', clear: 'both' }}></div>
+
+                    <div style={{ marginTop: '20px', paddingTop: '20px' }} className="print-exact relative">
                         <h2 className="serif-font text-4xl mb-6 accent-border-left pl-6">8. Industrispecifika Möjligheter</h2>
                         <p className="mb-8 text-xs opacity-70">De 5 mest hög-påverkande AI-applikationerna just nu för: <strong>{data.industryData.name}</strong>.</p>
                         
