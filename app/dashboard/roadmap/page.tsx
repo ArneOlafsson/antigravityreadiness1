@@ -685,8 +685,8 @@ export default function RoadmapPage() {
                         box-shadow: none !important;
                     }
                     /* Färg-matchade borders för att simulera bakgrunds-padding! */
-                    .report-page.bg-white { border-color: white !important; }
-                    .report-page.bg-soft { border-color: var(--soft-bg) !important; }
+                    .report-page.bg-white { border-color: #ffffff !important; }
+                    .report-page.bg-soft { border-color: var(--bg-soft) !important; }
                     .report-page.bg-navy { border-color: var(--primary-navy) !important; }
                     .report-page:last-child {
                         page-break-after: auto !important;
