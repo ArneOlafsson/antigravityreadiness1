@@ -676,10 +676,18 @@ export default function RoadmapPage() {
                         break-after: page !important;
                         break-inside: avoid !important;
                         margin: 0 !important;
-                        padding: 50px 60px !important; /* 60px left/right avoids edge touching */
+                        /* WebKit ignorerar padding vid page-breaks. Vi använder border istället! */
+                        padding: 0 !important; 
+                        border-top: 50px solid transparent !important;
+                        border-bottom: 50px solid transparent !important;
+                        border-left: 60px solid transparent !important;
+                        border-right: 60px solid transparent !important;
                         box-shadow: none !important;
-                        border: none !important;
                     }
+                    /* Färg-matchade borders för att simulera bakgrunds-padding! */
+                    .report-page.bg-white { border-color: white !important; }
+                    .report-page.bg-soft { border-color: var(--soft-bg) !important; }
+                    .report-page.bg-navy { border-color: var(--primary-navy) !important; }
                     .report-page:last-child {
                         page-break-after: auto !important;
                         break-after: auto !important;
