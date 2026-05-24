@@ -390,7 +390,7 @@ export default function Dashboard() {
                                         "Din riskprofil är asymmetrisk. Du har en teknisk grund som är din 'sköld', men din marknadsposition är under attack."
                                     </p>
                                     <p className="text-xs italic text-gray-500">
-                                        Rekommendation: Prioritera {data.categories.reduce((prev: any, current: any) => (prev.score > current.score) ? prev : current).name.toLowerCase()}.
+                                        Rekommendation: Prioritera {data.categories.length > 0 ? data.categories.reduce((prev: any, current: any) => (prev.score > current.score) ? prev : current).name.toLowerCase() : 'att genomföra analysen'}.
                                     </p>
                                 </div>
                             </div>
@@ -435,7 +435,7 @@ export default function Dashboard() {
                                     <div className="serif-font text-3xl mb-2 text-white">03</div>
                                     <h5 className="uppercase-spaced mb-2 text-white">Offensiv Skalning</h5>
                                     <p className="text-white text-sm">
-                                        Omstrukturering av {data.categories.reduce((p: any, c: any) => p.score > c.score ? p : c).name} för att sänka marginalkostnaden mot noll.
+                                        Omstrukturering av {data.categories.length > 0 ? data.categories.reduce((p: any, c: any) => p.score > c.score ? p : c).name : 'kärnverksamheten'} för att sänka marginalkostnaden mot noll.
                                     </p>
                                 </div>
                             </div>
