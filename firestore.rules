@@ -1,8 +1,140 @@
 rules_version = '2';
+
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write: if request.auth != null;
+    
+    // User Profiles
+    match /users/{userId} {
+      allow read: if request.auth != null; 
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Survey Collections
+    match /organizations/{orgId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+    }
+
+    match /campaigns/{campaignId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    match /responses/{responseId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Catches Collection
+    match /catches/{catchId} {
+      allow read: if true; // TEMPORARY FIX TO ALLOW SIMPLER QUERIES
+      allow create: if request.auth != null && request.resource.data.ownerUid == request.auth.uid;
+      allow update: if request.auth != null; // Simplified for MVP (Likes/Comments updates)
+      allow delete: if request.auth != null && (
+        resource.data.ownerUid == request.auth.uid ||
+        (request.auth.token.email != null && (request.auth.token.email == 'arne@olafsson.se' || request.auth.token.email == 'arne.olafsson@gmail.com')) ||
+        (request.auth.token.email != null && request.auth.token.email == 'johan@animaldeli.com') ||
+        (exists(/databases/$(database)/documents/users/$(request.auth.uid)) && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin')
+      );
+      
+      // Comments Subcollection
+      match /comments/{commentId} {
+        allow read: if request.auth != null;
+        allow create: if request.auth != null && request.resource.data.uid == request.auth.uid;
+        allow delete: if request.auth != null && (
+          resource.data.uid == request.auth.uid || 
+          (request.auth.token.email != null && (request.auth.token.email == 'arne@olafsson.se' || request.auth.token.email == 'arne.olafsson@gmail.com')) ||
+          (request.auth.token.email != null && request.auth.token.email == 'johan@animaldeli.com') ||
+          (exists(/databases/$(database)/documents/users/$(request.auth.uid)) && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin')
+        );
+      }
+    }
+
+
+    // Chat History
+    match /chats/{userId}/messages/{messageId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Likes Collection (Root level)
+    match /likes/{likeId} {
+        allow read: if request.auth != null;
+        allow write: if request.auth != null && request.resource.data.uid == request.auth.uid;
+        allow delete: if request.auth != null && resource.data.uid == request.auth.uid;
+    }
+
+    // Tips & Trix Posts
+    match /posts/{postId} {
+        allow read: if true;
+        
+        allow create, delete: if request.auth != null && (
+          (request.auth.token.email != null && (request.auth.token.email == 'arne@olafsson.se' || request.auth.token.email == 'arne.olafsson@gmail.com')) ||
+          (request.auth.token.email != null && request.auth.token.email == 'johan@animaldeli.com') ||
+          (exists(/databases/$(database)/documents/users/$(request.auth.uid)) && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin')
+        );
+        
+        allow update: if request.auth != null && (
+          request.resource.data.diff(resource.data).affectedKeys().hasOnly(['commentsCount']) ||
+          (request.auth.token.email != null && (request.auth.token.email == 'arne@olafsson.se' || request.auth.token.email == 'arne.olafsson@gmail.com')) ||
+          (request.auth.token.email != null && request.auth.token.email == 'johan@animaldeli.com') ||
+          (exists(/databases/$(database)/documents/users/$(request.auth.uid)) && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin')
+        );
+
+        // Comments subcollection
+        match /comments/{commentId} {
+             allow read: if true; 
+             allow create, update: if request.auth != null && 
+               exists(/databases/$(database)/documents/users/$(request.auth.uid)) && 
+               get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isPremium == true;
+             allow delete: if request.auth != null && (
+               resource.data.uid == request.auth.uid || 
+               (request.auth.token.email != null && (request.auth.token.email == 'arne@olafsson.se' || request.auth.token.email == 'arne.olafsson@gmail.com')) ||
+               (request.auth.token.email != null && request.auth.token.email == 'johan@animaldeli.com') ||
+               (exists(/databases/$(database)/documents/users/$(request.auth.uid)) && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin')
+             );
+        }
+    }
+    
+    // Equipment & Bete
+    match /equipment/{equipmentId} {
+        allow read: if true;
+        
+        allow create, delete: if request.auth != null && (
+          (request.auth.token.email != null && (request.auth.token.email == 'arne@olafsson.se' || request.auth.token.email == 'arne.olafsson@gmail.com')) ||
+          (request.auth.token.email != null && request.auth.token.email == 'johan@animaldeli.com') ||
+          (exists(/databases/$(database)/documents/users/$(request.auth.uid)) && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin')
+        );
+        
+        allow update: if request.auth != null && (
+          request.resource.data.diff(resource.data).affectedKeys().hasOnly(['commentsCount']) ||
+          (request.auth.token.email != null && (request.auth.token.email == 'arne@olafsson.se' || request.auth.token.email == 'arne.olafsson@gmail.com')) ||
+          (request.auth.token.email != null && request.auth.token.email == 'johan@animaldeli.com') ||
+          (exists(/databases/$(database)/documents/users/$(request.auth.uid)) && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin')
+        );
+        
+        // Comments subcollection
+        match /comments/{commentId} {
+             allow read: if true; 
+             allow create, update: if request.auth != null && 
+               exists(/databases/$(database)/documents/users/$(request.auth.uid)) && 
+               get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isPremium == true;
+             allow delete: if request.auth != null && (
+               resource.data.uid == request.auth.uid || 
+               (request.auth.token.email != null && (request.auth.token.email == 'arne@olafsson.se' || request.auth.token.email == 'arne.olafsson@gmail.com')) ||
+               (request.auth.token.email != null && request.auth.token.email == 'johan@animaldeli.com') ||
+               (exists(/databases/$(database)/documents/users/$(request.auth.uid)) && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin')
+             );
+        }
+    }
+
+    // Antigravity AI Readiness App (Assessments)
+    match /assessments/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    match /assessment_logs/{logId} {
+      allow create: if request.auth != null;
+      allow read: if request.auth != null && request.resource.data.userId == request.auth.uid;
     }
   }
 }
